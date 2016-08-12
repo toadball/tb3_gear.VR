@@ -118,10 +118,21 @@ if (_unit isKindOf "Man") then {
 	if ((count _uniformContents) > 0) then { [_unit,_uniformContents] call tb3_fsetUniformContents; };
 	if ((count _vestContents) > 0) then { [_unit,_vestContents] call tb3_fsetVestContents; };
 
-	if ((count _vehCargoItems) > 0) then { [_unit,_vehCargoItems] call tb3_fSetVehCargoItems; };
-	if ((count _vehCargoWeapons) > 0) then { [_unit,_vehCargoWeapons] call tb3_fSetVehCargoWeapons; };
-	if ((count _vehCargoMagazines) > 0) then { [_unit,_vehCargoMagazines] call tb3_fSetVehCargoMagazines; };
-	if ((count _vehCargoRucks) > 0) then { [_unit,_vehCargoRucks] call tb3_fSetVehCargoBackpacks; };
+if (!(_unit isKindOf "Man")) then {
+	
+	if ( local _unit ) then {
+		//get rid the stuff in the vehicle already. If you wanted it tough titties don't bloody try to add extra stuff via a large framework gear script, can't have your cake and eat it.
+		clearItemCargoGlobal _unit;
+		clearBackpackCargoGlobal _unit;
+		clearMagazineCargoGlobal _unit;
+		clearWeaponCargoGlobal _unit;
+		//well, you probably could...but I'm too lazy to let you.
 		
+		if ((count _vehCargoItems) > 0) then { [_unit,_vehCargoItems] call tb3_fSetVehCargoItems; };
+		if ((count _vehCargoWeapons) > 0) then { [_unit,_vehCargoWeapons] call tb3_fSetVehCargoWeapons; };
+		if ((count _vehCargoMagazines) > 0) then { [_unit,_vehCargoMagazines] call tb3_fSetVehCargoMagazines; };
+		if ((count _vehCargoRucks) > 0) then { [_unit,_vehCargoRucks] call tb3_fSetVehCargoBackpacks; };
+	};
+};	
 	_unit setVariable ["tb3_loadout", _this, true];
 	_handled = true;

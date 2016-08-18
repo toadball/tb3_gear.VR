@@ -11,11 +11,11 @@ if ((_object isKindOf ["ItemCore", configFile >> "CfgWeapons"]) || (_object isKi
 			_return = "Item";
 		};
 	}; //isItem
-	/*if (isClass(configFile >> "CfgPatches" >> "ACRE_Main")) then {
+	if (isClass(configFile >> "CfgPatches" >> "ACRE_Main")) then {
 		if ([_object] call acre_api_fnc_isRadio)  then {
 			_return = "Item";
 		};
-	}; //isItem*/
+	}; //isItem
 if (_object isKindOf ["Bag_Base", configFile >> "CfgVehicles"]) then {_return = "Backpack";}; //isBackpack
 
 _return;

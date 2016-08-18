@@ -1,5 +1,6 @@
 tb3_fLoadout				= compile (preprocessFileLineNumbers "tb3\f\loadout\fLoadout.sqf");
 tb3_fSelectPrimaryMuzzle	= compile (preprocessFileLineNumbers "tb3\f\loadout\fSelectPrimaryMuzzle.sqf");
+tb3_fIsTypeOf				= compile (preprocessFileLineNumbers "tb3\f\loadout\fIsTypeOf.sqf");
 
 tb3_fSetItems				= compile (preprocessFileLineNumbers "tb3\f\loadout\fSetItems.sqf");
 tb3_fSetLinkedItems			= compile (preprocessFileLineNumbers "tb3\f\loadout\fSetLinkedItems.sqf");
@@ -20,3 +21,4 @@ tb3_fSetVehCargoMagazines	= compile (preprocessFileLineNumbers "tb3\f\loadout\ve
 tb3_fSetVehCargoWeapons		= compile (preprocessFileLineNumbers "tb3\f\loadout\vehicleCargo\fSetVehCargoWeapons.sqf");
 tb3_fSetVehCargoItems		= compile (preprocessFileLineNumbers "tb3\f\loadout\vehicleCargo\fSetVehCargoItems.sqf");
 tb3_fSetVehCargoBackpacks	= compile (preprocessFileLineNumbers "tb3\f\loadout\vehicleCargo\fSetVehCargoRucks.sqf");
+tb3_fSetBackpackCargoInVeh 	= compile (preprocessFileLineNumbers "tb3\f\loadout\vehicleCargo\fSetRuckCargoInVeh.sqf");

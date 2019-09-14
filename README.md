@@ -15,28 +15,22 @@ If you have an existing description.ext do not overwrite it, instead include the
 ```
 #include "tb3\loadouts.hpp"
 
-class Extended_PreInit_EventHandlers {
-        class tb3 {
-            init = "call ('tb3\preInit.sqf' call SLX_XEH_COMPILE)";
-        };
- };
-class CfgSettings {
-	class CBA {
-		class Caching {
-			compile = 0;
-			xeh = 0;
-			functions = 0;
-		};
+class CfgFunctions {
+	class tb3 {
+        #include "tb3\f\gear\CfgFunctions.hpp"
 	};
 };
+
 ```
 
 This will include the loadout definitions in your description.ext and it will compile all the loadout functions.
+If you have an existing CfgFunctions, simply include the TB3 class and it's underlying includes.
+If you use other TB3 modules simply make sure you're including their CfgFunctions definitions as normal alongisde the TB3 gear ones.
 
 ##### Adding a loadout to a unit.
 Loadouts can be added to units using the following in the unit’s init line:
 ```
-	[this,”ExampleSide”,”ExampleLoadout”] call tb3_floadout;
+	[this,”ExampleSide”,”ExampleLoadout”] call tb3_fnc_loadout;
 ```
 
 The loadout function “tb3_floadout” will search the TB3_Gear class in your description.ext file (included with the loadouts.hpp file) for two things: The side class, in this case ExampleSide, and the loadout class, in this case ExampleLoadout. Once the appropriate loadout is found it will use a variety of functions to apply this loadout to the unit the function is being called on. Note that the system will remove ALL existing gear prior to adding that defined in the loadout.
@@ -72,15 +66,15 @@ Weapons: This is an array containing the classname strings for all weapons added
 
 `priKit[] = {"optic_Arco","acc_pointer_IR"};`
 
-Primary attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the unit’s primary weapon. 
+Primary attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the unit’s primary weapon. Adding magazines to this array will have the weapon start loaded with those magazines. This works for UGLs as well as normal mags.
 
 `secKit[] = {“muzzle_snds_L”};`
 
-Launcher weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the launcher used by a unit.
+Launcher weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the launcher used by a unit. Adding magazines to this array will have the weapon start loaded with those magazines. 
 
 `pisKit[] = {“muzzle_snds_L”};`
 
-Pistol weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the pistol/sidearm used by a unit.
+Pistol weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the pistol/sidearm used by a unit. Adding magazines to this array will have the weapon start loaded with those magazines. 
 
 `assignedItems[] = {"ItemRadio","ItemMap","ItemCompass","ItemWatch","ItemGPS"};`
 

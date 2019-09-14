@@ -6,14 +6,14 @@ _priKit = _this select 2;
 _secKit = _this select 3;
 _pisKit = _this select 4;
 
-if ( local _unit ) then 
+if ( local _unit ) then
 {
 
 	// Remove all weapons on unit
 	{
 		_unit removeWeapon _x;
 	} forEach (weapons _unit);
-	// and now add the weapons	
+	// and now add the weapons
 	{
 		_unit addWeapon _x;
 	} forEach _weapons;
@@ -21,8 +21,8 @@ if ( local _unit ) then
 		{
 			_unit addPrimaryWeaponItem _x;
 		} forEach _priKit;
-	};	
-	
+	};
+
 	//Secondary Weapon attachments: Launchers
 	if ((count _secKit) > 0) then {
 		{
@@ -34,8 +34,8 @@ if ( local _unit ) then
 		{
 			_unit addHandgunItem _x;
 		} ForEach _pisKit;
-	};	
-	
+	};
+
 	_handled = true;
 } else
 {
@@ -43,4 +43,3 @@ if ( local _unit ) then
 };
 
 _handled // ret
-	

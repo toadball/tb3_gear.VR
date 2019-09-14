@@ -1,17 +1,7 @@
 #include "tb3\loadouts.hpp"
-
-class Extended_PreInit_EventHandlers {
+class CfgFunctions {
 	class tb3 {
-		init = "call ('tb3\preInit.sqf' call SLX_XEH_COMPILE)";
-	};
-};
-class CfgSettings {
-	class CBA {
-		class Caching {
-			compile = 0;
-			xeh = 0;
-			functions = 0;
-		};
+        #include "tb3\f\gear\CfgFunctions.hpp"
 	};
 };
 

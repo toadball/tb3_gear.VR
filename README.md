@@ -1,4 +1,4 @@
-####TB3 Gear System (Stand Alone Version)
+#### TB3 Gear System (Stand Alone Version)
 
 This document details the implementation and usage of the TB3 standalone gear system outside of the TB3 mission framework.
 
@@ -8,7 +8,7 @@ You will require the following to implement this gear script:
 * A good script \ text editor: Notepad++ is also recommended.
 
 
-#####Adding the TB3 gear system to your mission.
+##### Adding the TB3 gear system to your mission.
 To setup the system extract the description.ext and tb3 folder and contents to your mission folder.
 If you have an existing description.ext do not overwrite it, instead include the following:
 
@@ -33,7 +33,7 @@ class CfgSettings {
 
 This will include the loadout definitions in your description.ext and it will compile all the loadout functions.
 
-#####Adding a loadout to a unit.
+##### Adding a loadout to a unit.
 Loadouts can be added to units using the following in the unit’s init line:
 ```
 	[this,”ExampleSide”,”ExampleLoadout”] call tb3_floadout;
@@ -41,7 +41,7 @@ Loadouts can be added to units using the following in the unit’s init line:
 
 The loadout function “tb3_floadout” will search the TB3_Gear class in your description.ext file (included with the loadouts.hpp file) for two things: The side class, in this case ExampleSide, and the loadout class, in this case ExampleLoadout. Once the appropriate loadout is found it will use a variety of functions to apply this loadout to the unit the function is being called on. Note that the system will remove ALL existing gear prior to adding that defined in the loadout.
 
-#####Creating a new loadout.
+##### Creating a new loadout.
 The tb3 gear system can be used to add equipment to a unit or the inventory space of a vehicle or object (it cannot alter the vehicles on board weapons).
 
 The loadouts.hpp file contains the TB3_gear class, within this we define the side classes which will contain the various unit/vehicle inventory loadouts.
@@ -65,7 +65,7 @@ class TB3_Gear {
 You will notice in the above example that we haven’t specified any equipment in the loadouts.
 This is done with a number of variables, some are specific to unit inventories and others to vehicle inventories.
 
-#####Unit Specific variables:
+##### Unit Specific variables:
 `weapons[] = {"arifle_Mk20_GL_F","Rangefinder"};`
 
 Weapons: This is an array containing the classname strings for all weapons added to a unit primary weapon, secondary weapon, launcher weapon, and binocular type weapons.
@@ -165,7 +165,7 @@ General magazines and Items: These arrays work in the same way as the container 
 Note: You should not use these arrays with the container specific arrays, instead if you want to add things in a non-specific manner leave the container specific arrays empty or do not include them. 
 Similarly if you want to add content to specific containers do not include the general magazines and general items arrays or leave them empty.
 
-#####Randomisation of Gear:
+##### Randomisation of Gear:
 
 A unit’s: headgear, goggles/facewear, backpack, vest, and uniform can all be randomised using the TB3 loadout system.
 
@@ -180,7 +180,7 @@ Once enabled, additional classes should be added to the appropriate loadout vari
 
 You cannot randomise weapons, attachments, or carried equipment. This should be used for aesthetics only.
 
-#####Vehicle/Object Inventory Specific variables:
+##### Vehicle/Object Inventory Specific variables:
 
 `vehCargoWeapons[] = {{"launch_NLAW_F",8}};`
 

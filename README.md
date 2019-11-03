@@ -5,7 +5,7 @@ This document details the implementation and usage of the TB3 standalone gear sy
 You will require the following to implement this gear script:
 
 * TB3 gear system example mission files, available on github: https://github.com/toadball/tb3_gear.VR
-* A good script \ text editor: Notepad++ is also recommended.
+* A good script \ text editor such as: Notepad++, or Atom is also recommended.
 
 
 ##### Adding the TB3 gear system to your mission.
@@ -39,8 +39,8 @@ The loadout function “tb3_floadout” will search the TB3_Gear class in your d
 The tb3 gear system can be used to add equipment to a unit or the inventory space of a vehicle or object (it cannot alter the vehicles on board weapons).
 
 The loadouts.hpp file contains the TB3_gear class, within this we define the side classes which will contain the various unit/vehicle inventory loadouts.
-In a practical example, we have a mission with two sides, SIDE1 and SIDE2. So in our loadouts file we will have the TB3_Gear class and within that two sub classes: class SIDE1 and class SIDE2. 
-Within each of these we will have the various loadouts we want to give units for that specific side  the example below. 
+In a practical example, we have a mission with two sides, SIDE1 and SIDE2. So in our loadouts file we will have the TB3_Gear class and within that two sub classes: class SIDE1 and class SIDE2.
+Within each of these we will have the various loadouts we want to give units for that specific side  the example below.
 ```
 class TB3_Gear {
 	//everything between the {} are within the defined class.
@@ -70,11 +70,11 @@ Primary attachments: This is an array containing the classname strings for all t
 
 `secKit[] = {“muzzle_snds_L”};`
 
-Launcher weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the launcher used by a unit. Adding magazines to this array will have the weapon start loaded with those magazines. 
+Launcher weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the launcher used by a unit. Adding magazines to this array will have the weapon start loaded with those magazines.
 
 `pisKit[] = {“muzzle_snds_L”};`
 
-Pistol weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the pistol/sidearm used by a unit. Adding magazines to this array will have the weapon start loaded with those magazines. 
+Pistol weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the pistol/sidearm used by a unit. Adding magazines to this array will have the weapon start loaded with those magazines.
 
 `assignedItems[] = {"ItemRadio","ItemMap","ItemCompass","ItemWatch","ItemGPS"};`
 
@@ -151,12 +151,12 @@ Backpack Contents: This array is an array of arrays containing the classname str
 
 When set to 1 aceEarPlugs will have a unit with this loadout start with earplugs in.
 ```
-magazines[] = {}; 
+magazines[] = {};
 items[] = {};
 ```
 
-General magazines and Items: These arrays work in the same way as the container arrays for magazines and items however, these are added nonspecifically. 
-Note: You should not use these arrays with the container specific arrays, instead if you want to add things in a non-specific manner leave the container specific arrays empty or do not include them. 
+General magazines and Items: These arrays work in the same way as the container arrays for magazines and items however, these are added nonspecifically.
+Note: You should not use these arrays with the container specific arrays, instead if you want to add things in a non-specific manner leave the container specific arrays empty or do not include them.
 Similarly if you want to add content to specific containers do not include the general magazines and general items arrays or leave them empty.
 
 ##### Randomisation of Gear:
@@ -212,3 +212,35 @@ vehCargoRucks[] = {
 ```
 
 Vehicle Inventory Backpacks: This array is an array of arrays containing the classname strings and quantity of backpacks or CSW bags to be added to the vehicle’s inventory.
+Backpacks with predefined contents can be defined using the alternate syntax below.
+
+```
+vehCargoRucks[] = {
+  {"B_Kitbag_sgg",15},
+  {"B_Kitbag_rgr",2,{
+     {"30Rnd_556x45_Stanag_red",6},
+     {"30Rnd_556x45_Stanag_Tracer_Red",2},
+     {"HandGrenade",2},
+     {"SmokeShell",2},
+     {"Chemlight_green",2},
+     {"B_IR_Grenade",1},
+     {"200Rnd_556x45_box_red_f",2},
+     {"200Rnd_556x45_box_tracer_red_f",2}
+    }
+  }
+};
+```
+
+In this example we are now adding two backpacks of a different type with contents defined in a 3rd element of the array. This third element is formatted exactly the same way as with the backpackContents array.
+
+##### Utility Functions:
+
+```
+[_unit,_outputClass] call tb3_fnc_util_GearToClass;
+```
+
+Params:
+_unit: the unit you want to create a loadout based on <object>
+_outputClass: the class name of the exported loadout <string>
+
+This function returns the current gear of a specified unit as a TB3 gear loadout class. It also exports the same return to clipboard for easy copy and paste loadout creation. The exported class can then be adjusted as normal by editing it within your preferred program.

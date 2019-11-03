@@ -7,12 +7,12 @@ _unit = _this select 0;
 
 if ( local _unit ) then
 {
-	// first remove all magazines in vehicle cargo
-	
-	clearBackpackCargoGlobal _unit ;
-	
+	// first remove all backpacks in vehicle cargo
 
-	// and now add all given magazines
+	clearBackpackCargoGlobal _unit ;
+
+
+	// and now add all given backpacks
 	_rucks = _this select 1;
 	{
 		if (count _x < 3) then {
@@ -23,17 +23,17 @@ if ( local _unit ) then
 			_rClass = _x select 0;//backpack classname
 			_rNum = _x select 1; //number of _rClass to add
 			_rCon = _x select 2; // array of contents to be added to these rucksacks
-			
-	
-			for "_i" from 1 to _rNum do { //Add a rucksack, add contents to rucksack, repeat.
+
+
+			for "_i" from 1 to _rNum step 1 do { //Add a rucksack, add contents to rucksack, repeat.
 				_unit addBackpackCargoGlobal [_rClass,1]; //add ruck to vehicle cargo
 				_backpack = (everyBackpack _unit) select ((count everyBackpack _unit)-1); // select tbe last added ruck in vehicle cargo
-				[_backpack,_rCon,1] call tb3_fSetBackpackCargoInVeh; //using a function because fuck nested for statements		
-			};	
+				[_backpack,_rCon,1] call tb3_fnc_SetBackpackCargoInVeh; //using a function because fuck nested for statements		
+			};
 		};
-		
+
 	} forEach _rucks;
-		
+
 	_handled = true;
 } else
 {

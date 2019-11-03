@@ -20,27 +20,13 @@ if (count _this > 2) then {
 			_cargoCleared = true;
 		};
 		default {_cargoCleared = false;};
-		
+
 	};
 };
 {
 	//_x = array in format {"fing",10};
-	switch ([_x select 0] call tb3_fIsTypeOf) do {
-		case "Weapon": {
-			_backpack addWeaponCargoGlobal _x;
-		};
-		case "Magazine": {
-			_backpack addMagazineCargoGlobal _x;
-		};		
-		case "Item": {
-			_backpack addItemCargoGlobal _x;
-		};	
-		case "Backpack": {
-			_backpack addBackpackCargoGlobal _x;
-		};			
-		default {};
-	};
-} forEach _contents;	
+	_backpack addItemCargoGlobal _x;
+} forEach _contents;
 _handledCargo = true;
 
 _return = [_handledCargo,_cargoCleared];

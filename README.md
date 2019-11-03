@@ -30,7 +30,7 @@ If you use other TB3 modules simply make sure you're including their CfgFunction
 ##### Adding a loadout to a unit.
 Loadouts can be added to units using the following in the unit’s init line:
 ```
-	[this,”ExampleSide”,”ExampleLoadout”] call tb3_fnc_loadout;
+	[this,”ExampleSide”,”ExampleLoadout”] call tb3_fnc_Loadout;
 ```
 
 The loadout function “tb3_floadout” will search the TB3_Gear class in your description.ext file (included with the loadouts.hpp file) for two things: The side class, in this case ExampleSide, and the loadout class, in this case ExampleLoadout. Once the appropriate loadout is found it will use a variety of functions to apply this loadout to the unit the function is being called on. Note that the system will remove ALL existing gear prior to adding that defined in the loadout.

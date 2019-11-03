@@ -240,7 +240,7 @@ In this example we are now adding two backpacks of a different type with content
 ```
 
 Params:
-_unit: the unit you want to create a loadout based on <object>
-_outputClass: the class name of the exported loadout <string>
+_unit: the unit you want to create a loadout based on - object
+_outputClass: the class name of the exported loadout - string
 
 This function returns the current gear of a specified unit as a TB3 gear loadout class. It also exports the same return to clipboard for easy copy and paste loadout creation. The exported class can then be adjusted as normal by editing it within your preferred program.

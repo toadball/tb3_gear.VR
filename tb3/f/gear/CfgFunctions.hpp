@@ -63,4 +63,8 @@ class gear {
     class setBackpackCargoInVeh {
         file = "tb3\f\gear\vehicleCargo\fSetRuckCargoInVeh.sqf";
     };
+    class util_GearToClass {
+        file = "tb3\f\gear\fGeartoClass.sqf";
+    };
+
 };

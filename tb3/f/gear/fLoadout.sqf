@@ -31,8 +31,9 @@ _gogglesRandom		= getNumber (TB3_GearPath >> _cfg >> _gear >> "gogglesRandom");
 _items				= getArray (TB3_GearPath >> _cfg >> _gear >> "items");
 _assignedItems		= getArray (TB3_GearPath >> _cfg >> _gear >> "assignedItems");
 
-_aceEarPlugs		= getNumber (TB3_GearPath >> _cfg >> _gear >> "ace_earplugs");
-_aceMedic			= getNumber (TB3_GearPath >> _cfg >> _gear >> "ace_medic");
+_aceEarPlugs	= getNumber (TB3_GearPath >> _cfg >> _gear >> "ace_earplugs");
+_aceMedic			= getNumber (TB3_GearPath >> _cfg >> _gear >> "ace_medic"); //0-2
+_aceEngineer	= getNumber (TB3_GearPath >> _cfg >> _gear >> "ace_engineer"); //0-2
 
 _vehCargoWeapons 	= getArray (TB3_GearPath >> _cfg >> _gear >> "vehCargoWeapons");
 _vehCargoMagazines 	= getArray (TB3_GearPath >> _cfg >> _gear >> "vehCargoMagazines");
@@ -112,7 +113,8 @@ if (_unit isKindOf "Man") then {
 	if ((count _items) > 0) then { [_unit,_items] call tb3_fnc_SetItems;	};
 
 	if (_aceEarPlugs == 1) then { _unit setVariable ["ACE_hasEarPlugsIn", true, true]; };
-	if (_aceMedic == 1) then { _unit setVariable ["ace_medical_medicClass", true, true]; };
+	if (!(isNil "_aceMedic")) then { _unit setVariable ["ace_medical_medicClass", _aceMedic, true]; };
+  if (!(isNil "_aceEngineer")) then { _unit setVariable ["ACE_IsEngineer", _aceEngineer, true]; };
 
 	if ((count _backpackContents) > 0) then { [_unit,_backpackContents] call tb3_fnc_setRuckContents; };
 	if ((count _uniformContents) > 0) then { [_unit,_uniformContents] call tb3_fnc_setUniformContents; };

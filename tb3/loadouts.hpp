@@ -3,6 +3,8 @@
 class TB3_Gear {//Gear definitions stay within this.
 	class ExampleSide { //Side_class, 1st string in _this
 		class ExampleUnit { //unit_class, 2nd string in _this
+      ace_earplugs = 1; //Set to 1 to start with earplugs in
+
 			weapons[] = {"arifle_Mk20_GL_F","Rangefinder"}; //weapons: includes binos, launchers, pistols, and main rifle/klmg weapon
 			priKit[] = {"optic_Arco","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"};//primary weapon attachments
 			secKit[] = {};//launcher attachments
@@ -12,7 +14,6 @@ class TB3_Gear {//Gear definitions stay within this.
 
 			headgear[] = {"H_HelmetB_plain_mcamo"};
 			goggles[] = {"G_Tactical_Black"};
-			ace_earplugs = 1;
 			uniform[] = {"U_B_CTRG_1"};
 				uniformContents[] = {
 					{"30Rnd_556x45_Stanag",3},// {classname,number}
@@ -52,7 +53,13 @@ class TB3_Gear {//Gear definitions stay within this.
 
 			magazines[] = {}; items[] = {}; // only use these if you do not want to assign gear to specific locations in containers, if you do use these ensure the magazine/item container arrays are empty.
 		};//end ExampleUnit
-
+		class ExampleMedic: ExampleUnit {
+      ace_medic = 1; //0, 1, or 2 sets ace medic level accordingly
+    }; // end example medic unit
+    class ExampleEngineer: ExampleUnit {
+      ace_engineer = 1; //0, 1, or 2 sets ace engineer level accordingly
+    };
+    
 		class RandomisedUnit: ExampleUnit {
 			//Inherits all but containers, goggles, and headgear from: ExampleUnit
 			headgear[] = {"H_Booniehat_khk","H_HelmetB_plain_blk","H_HelmetB_paint","H_HelmetB_light","H_Cap_khaki_specops_UK"};

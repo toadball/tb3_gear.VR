@@ -147,9 +147,28 @@ backpackContents[] = {
 
 Backpack Contents: This array is an array of arrays containing the classname string of the magazines, items, and weapons to be added to the backpack and the quantity to be added.
 
-`ace_EarPlugs = 1;`
+`ace_earplugs = 1;`
 
 When set to 1 aceEarPlugs will have a unit with this loadout start with earplugs in.
+
+`ace_medic = 1;`
+
+When set to 0, 1, or 2, this will make a unit with the given loadout a medic of the given level for ace:
+
+* 0 = Not a medic
+* 1 = Medic
+* 2 = Doctor
+
+`ace_engineer = 1;`
+
+When set to 0, 1, or 2, this will make a unit with the given loadout an engineer of the given level for ace:
+
+* 0 = Not an engineer
+* 1 = Engineer
+* 2 = Advanced engineer
+
+For ace_medic and ace_engineer, best practice is to only define these on relevant loadouts to ensure behavior as expected. If they must be defined in a generic base class it is recommended they are both set to 0.
+
 ```
 magazines[] = {};
 items[] = {};

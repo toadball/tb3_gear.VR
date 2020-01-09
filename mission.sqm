@@ -8,14 +8,14 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=23;
+		nextID=25;
 	};
 	class Camera
 	{
-		pos[]={4156.7783,10.098139,4105.0908};
-		dir[]={-0.059243966,-0.50351828,-0.86208355};
-		up[]={-0.034525704,0.86393142,-0.50239575};
-		aside[]={-0.99775958,-1.3285226e-006,0.068566784};
+		pos[]={4160.1563,30,4028.167};
+		dir[]={0,-0.70710683,0.70710683};
+		up[]={0,0.70710677,0.70710677};
+		aside[]={0.99999994,0,-0};
 	};
 };
 binarizationWanted=0;
@@ -23,15 +23,13 @@ addons[]=
 {
 	"A3_Weapons_F_Ammoboxes",
 	"A3_Characters_F",
-	"A3_Soft_F_MRAP_01",
-	"ace_realisticnames",
-	"Desert"
+	"A3_Soft_F_MRAP_01"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=4;
+		items=3;
 		class Item0
 		{
 			className="A3_Weapons_F";
@@ -53,11 +51,6 @@ class AddonsMetaData
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item3
-		{
-			className="Desert";
-			name="Desert";
-		};
 	};
 };
 randomSeed=13106124;
@@ -66,6 +59,7 @@ class ScenarioData
 	author="ToadBall";
 	respawn=2;
 	respawnDelay=5;
+	wreckRemovalMaxTime=3600;
 };
 class CustomAttributes
 {
@@ -87,24 +81,6 @@ class CustomAttributes
 							"ARRAY"
 						};
 					};
-					class value
-					{
-						items=1;
-						class Item0
-						{
-							class data
-							{
-								class type
-								{
-									type[]=
-									{
-										"STRING"
-									};
-								};
-								value="Counter";
-							};
-						};
-					};
 				};
 			};
 		};
@@ -115,8 +91,8 @@ class CustomAttributes
 		name="Scenario";
 		class Attribute0
 		{
-			property="cba_settings_hash";
-			expression="false";
+			property="EnableDebugConsole";
+			expression="true";
 			class Value
 			{
 				class data
@@ -125,67 +101,10 @@ class CustomAttributes
 					{
 						type[]=
 						{
-							"ARRAY"
+							"SCALAR"
 						};
 					};
-					class value
-					{
-						items=4;
-						class Item0
-						{
-							class data
-							{
-								class type
-								{
-									type[]=
-									{
-										"STRING"
-									};
-								};
-								value="#CBA_HASH#";
-							};
-						};
-						class Item1
-						{
-							class data
-							{
-								class type
-								{
-									type[]=
-									{
-										"ARRAY"
-									};
-								};
-							};
-						};
-						class Item2
-						{
-							class data
-							{
-								class type
-								{
-									type[]=
-									{
-										"ARRAY"
-									};
-								};
-							};
-						};
-						class Item3
-						{
-							class data
-							{
-								nil=1;
-								class type
-								{
-									type[]=
-									{
-										"ANY"
-									};
-								};
-							};
-						};
-					};
+					value=2;
 				};
 			};
 		};
@@ -215,7 +134,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=11;
+		items=12;
 		class Item0
 		{
 			dataType="Object";
@@ -652,25 +571,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="FHQ_UnitBriefingID";
-							expression="if (!is3DEN) then {[_this, _value] call FHQ_fnc_ttiUnitBriefing;}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -688,7 +588,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -707,7 +607,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=3;
+						nAttributes=2;
 					};
 				};
 			};
@@ -804,6 +704,81 @@ class Mission
 			title="TB3_GEAR";
 			description="This mission makes use of the tb3_gear module. This provides a robust and flexible loadout system for mission makers ";
 			id=22;
+		};
+		class Item11
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={4150.8091,5.0014391,4084.7356};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="LIEUTENANT";
+						init="call{[this,""ExampleSide"",""RandomisedUnit""] call tb3_fnc_Loadout;}";
+						description="Example man";
+						isPlayable=1;
+					};
+					id=24;
+					type="B_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02ENG";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.94999999;
+								};
+							};
+						};
+						nAttributes=2;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=23;
 		};
 	};
 };

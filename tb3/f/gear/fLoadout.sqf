@@ -34,6 +34,7 @@ private _assignedItems = getArray (TB3_GearPath >> _cfg >> _gear >> "assignedIte
 private _aceEarPlugs = getNumber (TB3_GearPath >> _cfg >> _gear >> "ace_earplugs");
 private _aceMedic = getNumber (TB3_GearPath >> _cfg >> _gear >> "ace_medic"); //0-2
 private _aceEngineer = getNumber (TB3_GearPath >> _cfg >> _gear >> "ace_engineer"); //0-2
+private _aceEOD = getNumber (TB3_GearPath >> _cfg >> _gear >> "ace_eod"); //0-1
 
 private _vehCargoWeapons = getArray (TB3_GearPath >> _cfg >> _gear >> "vehCargoWeapons");
 private _vehCargoMagazines = getArray (TB3_GearPath >> _cfg >> _gear >> "vehCargoMagazines");
@@ -115,6 +116,7 @@ if ((count _items) > 0) then { [_unit,_items] call tb3_fnc_SetItems;	};
 if (_aceEarPlugs == 1) then { _unit setVariable ["ACE_hasEarPlugsIn", true, true]; };
 if (!(isNil "_aceMedic")) then { _unit setVariable ["ace_medical_medicClass", _aceMedic, true]; };
 if (!(isNil "_aceEngineer")) then { _unit setVariable ["ACE_IsEngineer", _aceEngineer, true]; };
+if (_aceEOD == 1) then { _unit setVariable ["ACE_isEOD", true, true]; };
 
 if ((count _backpackContents) > 0) then { [_unit,_backpackContents] call tb3_fnc_setRuckContents; };
 if ((count _uniformContents) > 0) then { [_unit,_uniformContents] call tb3_fnc_setUniformContents; };
@@ -147,7 +149,8 @@ if (isNil "_respawn") then { _respawn = true; };
 
 if (_respawn && ( !(_unit getVariable ["tb3_loadout_respawnEH", false]) )) then {
   _unit setVariable ["tb3_loadout_respawnEH", true, true];
-  _unit addEventHandler ["Respawn", {
+
+  _unit addMPEventHandler ["MPRespawn", {
     params ["_unit", "_corpse"];
     private _loadoutParams = _unit getVariable "tb3_loadout";
     _loadoutParams set [0,_unit];

@@ -59,7 +59,9 @@ class TB3_Gear {//Gear definitions stay within this.
     class ExampleEngineer: ExampleUnit {
       ace_engineer = 1; //0, 1, or 2 sets ace engineer level accordingly
     };
-    
+    class ExampleEOD: ExampleUnit {
+      ace_eod = 1; //0, or 1 sets ace EOD accordingly
+    };
 		class RandomisedUnit: ExampleUnit {
 			//Inherits all but containers, goggles, and headgear from: ExampleUnit
 			headgear[] = {"H_Booniehat_khk","H_HelmetB_plain_blk","H_HelmetB_paint","H_HelmetB_light","H_Cap_khaki_specops_UK"};

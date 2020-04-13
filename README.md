@@ -67,7 +67,8 @@ This is done with a number of variables, some are specific to unit inventories a
   },
   Rangefinder
 };
-
+`
+`
 weapons[] = {
   {
     {arifle_TRG21_GL_F,

@@ -61,20 +61,31 @@ This is done with a number of variables, some are specific to unit inventories a
 
 ##### Unit Specific variables:
 `weapons[] = {"arifle_Mk20_GL_F","Rangefinder"};`
+`weapons[] = {
+  {arifle_Mk20_GL_F,
+    {"optic_Arco","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
+  },
+  Rangefinder
+};`
+`
+weapons[] = {
+  {
+    {arifle_TRG21_GL_F,
+      {optic_Holosight_khk_F,acc_pointer_IR,30Rnd_556x45_Stanag,1Rnd_HE_Grenade_shell}
+    },
+    {arifle_TRG21_GL_F,
+      {optic_MRCO,acc_pointer_IR,30Rnd_556x45_Stanag,1Rnd_HE_Grenade_shell}
+    },
+    {arifle_Mk20_GL_plain_F,
+      {optic_MRCO,acc_pointer_IR,30Rnd_556x45_Stanag,1Rnd_HE_Grenade_shell}
+    }
+  },
+  Rangefinder
+};
+`
 
 Weapons: This is an array containing the classname strings for all weapons added to a unit primary weapon, secondary weapon, launcher weapon, and binocular type weapons.
-
-`priKit[] = {"optic_Arco","acc_pointer_IR"};`
-
-Primary attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the unit’s primary weapon. Adding magazines to this array will have the weapon start loaded with those magazines. This works for UGLs as well as normal mags.
-
-`secKit[] = {“muzzle_snds_L”};`
-
-Launcher weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the launcher used by a unit. Adding magazines to this array will have the weapon start loaded with those magazines.
-
-`pisKit[] = {“muzzle_snds_L”};`
-
-Pistol weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the pistol/sidearm used by a unit. Adding magazines to this array will have the weapon start loaded with those magazines.
+Within this you can specify weapons as simple classnames or as arrays. Arrays as shown above will allow for you to specify attachments including magazines on the weapon, or a selection of weapons and attachments to randomly draw from.
 
 `assignedItems[] = {"ItemRadio","ItemMap","ItemCompass","ItemWatch","ItemGPS"};`
 
@@ -84,15 +95,15 @@ ACRE Note: Do not add any ACRE radios to this array.
 
 `headgear[] = {"H_HelmetB_plain_mcamo"};`
 
-Headgear: This array should contain only one classname string for the worn headgear of a unit.
+Headgear: This array should contain only classname strings of the headgear which you want to be applied to the unit. Adding multiple entries will randomize what headgear is applied to the unit.
 
 `goggles[] = {"G_Shades_Black"};`
 
 Goggles/Facewear: This array should contain only one classname string for the worn goggles or facewear of a unit.
 
 `uniform[] = {"U_B_CTRG_1"};`
-
-Clothing/Uniform: This array should contain only one classname string for the worn uniform of a unit.
+`uniform[] = {"U_B_CTRG_1","U_B_CTRG_2","U_B_CTRG_3"};`
+Clothing/Uniform: This array should contain only classname strings of the clothing/Uniform which you want to be applied to the unit. Adding multiple entries will randomize what clothing/Uniform is applied to the unit.
 
 ```
 uniformContents[] = {
@@ -107,8 +118,9 @@ uniformContents[] = {
 Uniform Contents: This array is an array of arrays containing the classname string of the magazines, items, and weapons to be added to the uniform and the quantity to be added.
 
 `vest[] = {"V_PlateCarrierL_CTRG"};`
+`vest[] = {"V_PlateCarrierL_CTRG","V_Chestrig_oli","V_PlateCarrier1_rgr","V_BandollierB_oli"};`
+Vest: This array should contain only classname strings of the vest/loadbearing equipment which you want to be applied to the unit. Adding multiple entries will randomize what vest is applied to the unit.
 
-Vest: This array should contain only one classname string of the vest/loadbearing equipment worn by the unit.
 ```
 vestContents[] = {
 	{"30Rnd_556x45_Stanag",5},
@@ -180,18 +192,12 @@ Similarly if you want to add content to specific containers do not include the g
 
 ##### Randomisation of Gear:
 
-A unit’s: headgear, goggles/facewear, backpack, vest, and uniform can all be randomised using the TB3 loadout system.
+A unit’s: headgear, goggles/facewear, backpack, vest, uniform, and weapons can all be randomized using the TB3 loadout system.
+How this can be done is detailed along with how to set these as normal.
 
-When set to 1, the following variables enable randomisation of the respective loadout variables:
- * *uniformRandom* `uniformRandom =1;`
- * *vestRandom* `vestRandom =1;`
- * *headgearRandom* `headgearRandom =1;`
- * *gogglesRandom* `gogglesRandom =1;`
- * *backpackRandom* `backpackRandom =1;`
 
 Once enabled, additional classes should be added to the appropriate loadout variable. Additionally, this will disable the ability for you to clear the inventories of rucksacks prior to adding them to a unit.
 
-You cannot randomise weapons, attachments, or carried equipment. This should be used for aesthetics only.
 
 ##### Vehicle/Object Inventory Specific variables:
 
@@ -263,3 +269,29 @@ _unit: the unit you want to create a loadout based on - object
 _outputClass: the class name of the exported loadout - string
 
 This function returns the current gear of a specified unit as a TB3 gear loadout class. It also exports the same return to clipboard for easy copy and paste loadout creation. The exported class can then be adjusted as normal by editing it within your preferred program.
+
+##### Redundant Variables:
+`priKit[] = {"optic_Arco","acc_pointer_IR"};`
+
+Primary attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the unit’s primary weapon. Adding magazines to this array will have the weapon start loaded with those magazines. This works for UGLs as well as normal mags.
+
+#This has been phased out by improvements made to how weapons are defined.#
+
+`secKit[] = {“muzzle_snds_L”};`
+
+Launcher weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the launcher used by a unit. Adding magazines to this array will have the weapon start loaded with those magazines.
+
+#This has been phased out by improvements made to how weapons are defined.#
+
+`pisKit[] = {“muzzle_snds_L”};`
+
+Pistol weapon attachments: This is an array containing the classname strings for all the attachments (including magazines) you want to attach to the pistol/sidearm used by a unit. Adding magazines to this array will have the weapon start loaded with those magazines.
+
+#This has been phased out by improvements made to how weapons are defined.#
+
+The following are redundant following an update to how randomisation of gear was implemented in TB3
+* *uniformRandom* `uniformRandom =1;`
+* *vestRandom* `vestRandom =1;`
+* *headgearRandom* `headgearRandom =1;`
+* *gogglesRandom* `gogglesRandom =1;`
+* *backpackRandom* `backpackRandom =1;`

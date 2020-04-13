@@ -50,7 +50,7 @@ if (_unit isKindOf "Man") then {
 		{_unit removeWeapon _x;} forEach weapons _unit;
 		if ((count _uniform) > 0) then {
 			if (_uniformRandom == 1) then {
-				private _uniformSel = _uniform call BIS_fnc_selectRandom;
+				private _uniformSel = selectRandom _uniform;
 				if(_uniformSel != uniform _unit) then {
 					[_unit,_uniformSel] call tb3_fnc_SetUniform;
 				};
@@ -64,7 +64,7 @@ if (_unit isKindOf "Man") then {
 		};
 		if ((count _backpack) > 0) then {
 			if (_backpackRandom == 1) then {
-				private _backpackSel = _backpack call BIS_fnc_selectRandom;
+				private _backpackSel = selectRandom _backpack;
 				if(_backpackSel != backpack _unit) then {
 					[_unit,[_backpackSel]] call tb3_fnc_Setbackpack;
 				};
@@ -78,7 +78,7 @@ if (_unit isKindOf "Man") then {
 		};
 		if ((count _vest) > 0) then {
 			if (_vestRandom == 1) then {
-				private _vestSel = _vest call BIS_fnc_selectRandom;
+				private _vestSel = selectRandom _vest;
 				if(_vestSel != vest _unit) then {
 					[_unit,_vestSel] call tb3_fnc_Setvest;
 				};
@@ -98,19 +98,19 @@ if (_unit isKindOf "Man") then {
 if ((count _assignedItems) > 0) then { [_unit,_assignedItems] call tb3_fnc_SetLinkedItems; };
 if ((count _headgear) > 0) then {
 	if (_headgearRandom == 1) then {
-		private _headgearSel = _headgear call BIS_fnc_selectRandom;
+		private _headgearSel = selectRandom _headgear;
 		[_unit,_headgearSel] call tb3_fnc_SetHeadgear;
 	} else {  [_unit,_headgear select 0] call tb3_fnc_SetHeadgear; };
 };
 if ((count _goggles) > 0) then {
 	if (_gogglesRandom == 1) then {
-		private _gogglesSel = _goggles call BIS_fnc_selectRandom;
+		private _gogglesSel = selectRandom _goggles;
 		[_unit,_gogglesSel] call tb3_fnc_SetGoggles;
 	} else { [_unit,_goggles select 0] call tb3_fnc_SetGoggles; };
 };
 
 if ((count _magazines) > 0) then {	[_unit,_magazines] call tb3_fnc_SetMagazines; };
-if ((count _weapons) > 0) then { [_unit,_weapons,_priKit,_secKit,_pisKit] call tb3_fnc_SetWeapons; };
+if ((count _weapons) > 0) then { [_unit,_weapons,_priKit,_secKit,_pisKit,_weaponsRandom] call tb3_fnc_SetWeapons; };
 if ((count _items) > 0) then { [_unit,_items] call tb3_fnc_SetItems;	};
 
 if (_aceEarPlugs == 1) then { _unit setVariable ["ACE_hasEarPlugsIn", true, true]; };

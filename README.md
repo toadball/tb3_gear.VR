@@ -181,6 +181,9 @@ When set to 0, 1, or 2, this will make a unit with the given loadout an engineer
 
 For ace_medic and ace_engineer, best practice is to only define these on relevant loadouts to ensure behavior as expected. If they must be defined in a generic base class it is recommended they are both set to 0.
 
+`allowPlayerGoggles = 1;`
+By default TB3 gear will overwrite goggles applied through user profile, setting this to 1 on a loadout will allow user profile defined goggles to remain.
+
 ```
 magazines[] = {};
 items[] = {};

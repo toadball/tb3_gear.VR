@@ -1,7 +1,5 @@
-private ["_unit", "_uniform", "_handled"];
-
-
-_unit = _this select 0;
+params ["_unit", "_uniform"];
+private _handled;
 
 if ( local _unit ) then
 {
@@ -16,9 +14,9 @@ if ( local _unit ) then
 	} else {
 		_unit forceAddUniform _uniform;
 	};
-	
+
 	//_unit addUniform _uniform;
-	
+
 	_handled = true;
 } else
 {

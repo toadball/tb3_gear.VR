@@ -1,7 +1,6 @@
-private ["_unit", "_weapon", "_muzzles"];
-
-_unit 	= _this select 0;
-_weapon = primaryWeapon _unit;
+params ["_unit"];
+private _muzzles;
+private _weapon = primaryWeapon _unit;
 _handled = false;
 
 if ( _weapon != "" ) then

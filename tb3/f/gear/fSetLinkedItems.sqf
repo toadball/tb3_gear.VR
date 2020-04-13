@@ -1,19 +1,16 @@
-private ["_unit", "_items", "_handled"];
+params ["_unit", "_items"];
+private _handled;
 
-
-_unit = _this select 0;
-
-if ( local _unit ) then 
+if ( local _unit ) then
 {
 	// first remove all items
 	removeAllAssignedItems _unit;
 
 	// and now add the items
-	_items = _this select 1;
 	{
 		_unit linkItem _x;
 	} forEach _items;
-	
+
 	_handled = true;
 } else
 {

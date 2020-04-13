@@ -1,16 +1,11 @@
-private ["_unit", "_vest", "_handled"];
+params ["_unit", "_vest"];
+private _handled;
 
+if ( local _unit ) then {
 
-_unit = _this select 0;
-
-if ( local _unit ) then
-{
-	removeVest _unit;
-
-	_vest = _this select 1;
-
+  removeVest _unit;
 	_unit addVest _vest;
-		
+
 	_handled = true;
 } else
 {

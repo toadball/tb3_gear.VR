@@ -66,8 +66,8 @@ This is done with a number of variables, some are specific to unit inventories a
     {"optic_Arco","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
   },
   Rangefinder
-};`
-`
+};
+
 weapons[] = {
   {
     {arifle_TRG21_GL_F,
@@ -102,6 +102,7 @@ Headgear: This array should contain only classname strings of the headgear which
 Goggles/Facewear: This array should contain only one classname string for the worn goggles or facewear of a unit.
 
 `uniform[] = {"U_B_CTRG_1"};`
+
 `uniform[] = {"U_B_CTRG_1","U_B_CTRG_2","U_B_CTRG_3"};`
 Clothing/Uniform: This array should contain only classname strings of the clothing/Uniform which you want to be applied to the unit. Adding multiple entries will randomize what clothing/Uniform is applied to the unit.
 
@@ -118,6 +119,7 @@ uniformContents[] = {
 Uniform Contents: This array is an array of arrays containing the classname string of the magazines, items, and weapons to be added to the uniform and the quantity to be added.
 
 `vest[] = {"V_PlateCarrierL_CTRG"};`
+
 `vest[] = {"V_PlateCarrierL_CTRG","V_Chestrig_oli","V_PlateCarrier1_rgr","V_BandollierB_oli"};`
 Vest: This array should contain only classname strings of the vest/loadbearing equipment which you want to be applied to the unit. Adding multiple entries will randomize what vest is applied to the unit.
 
@@ -131,7 +133,7 @@ vestContents[] = {
 	{"HandGrenade",2},
 	{"Chemlight_green",4},
 	{"I_IR_Grenade",1},
-{"FirstAidKit",1}
+	{"FirstAidKit",1}
 };
 ```
 Vest Contents:  This array is an array of arrays containing the classname string of the magazines, items, and weapons to be added to the vest and the quantity to be added.

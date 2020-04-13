@@ -5,10 +5,12 @@ class TB3_Gear {//Gear definitions stay within this.
 		class ExampleUnit { //unit_class, 2nd string in _this
       ace_earplugs = 1; //Set to 1 to start with earplugs in
 
-			weapons[] = {"arifle_Mk20_GL_F","Rangefinder"}; //weapons: includes binos, launchers, pistols, and main rifle/klmg weapon
-			priKit[] = {"optic_Arco","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"};//primary weapon attachments
-			secKit[] = {};//launcher attachments
-			pisKit[] = {};//sidearm attachments
+      weapons[] = {
+        {arifle_Mk20_GL_F,
+          {"optic_Arco","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
+        },
+        Rangefinder
+      }; //weapons: includes binos, launchers, pistols, and main rifle/lmg weapon
 
 			assignedItems[] = {"ItemRadio","ItemMap","ItemCompass","ItemWatch","ItemGPS"};//linked items: gps, map etc: Do not use any ACRE class names here, if you want to add an acre radio do so in a container item slot, itemRadio is auto replaced with a 343
 
@@ -55,13 +57,14 @@ class TB3_Gear {//Gear definitions stay within this.
 		};//end ExampleUnit
 		class ExampleMedic: ExampleUnit {
       ace_medic = 1; //0, 1, or 2 sets ace medic level accordingly
-    }; // end example medic unit
+    };
     class ExampleEngineer: ExampleUnit {
       ace_engineer = 1; //0, 1, or 2 sets ace engineer level accordingly
     };
     class ExampleEOD: ExampleUnit {
       ace_eod = 1; //0, or 1 sets ace EOD accordingly
     };
+
 		class RandomisedUnit: ExampleUnit {
 			//Inherits all but containers, goggles, and headgear from: ExampleUnit
 			headgear[] = {"H_Booniehat_khk","H_HelmetB_plain_blk","H_HelmetB_paint","H_HelmetB_light","H_Cap_khaki_specops_UK"};
@@ -70,16 +73,28 @@ class TB3_Gear {//Gear definitions stay within this.
 			backpack[] = {"B_TacticalPack_oli","B_Kitbag_cbr","B_AssaultPack_cbr","B_FieldPack_khk","B_Carryall_khk"};
 			vest[] = {"V_PlateCarrierL_CTRG","V_Chestrig_oli","V_PlateCarrier1_rgr","V_BandollierB_oli"};
 
-			//variables bellow enable randomisation of unit containers, goggles, and headgear
-			headgearRandom = 1;
-			gogglesRandom = 1;
-			uniformRandom = 1;
-			backpackRandom = 1;
-			vestRandom = 1;
+      weapons[] = {
+        {
+          {arifle_TRG21_GL_F,
+            {optic_Holosight_khk_F,acc_pointer_IR,30Rnd_556x45_Stanag,1Rnd_HE_Grenade_shell}
+          },
+          {arifle_TRG21_GL_F,
+            {optic_MRCO,acc_pointer_IR,30Rnd_556x45_Stanag,1Rnd_HE_Grenade_shell}
+          },
+          {arifle_Mk20_GL_plain_F,
+            {optic_MRCO,acc_pointer_IR,30Rnd_556x45_Stanag,1Rnd_HE_Grenade_shell}
+          }
+        },
+        Rangefinder
+      };
 		};
 		class RandomisedUnit2: RandomisedUnit {
-			weapons[] = {arifle_TRG21_GL_F,Rangefinder};
-			priKit[] = {optic_Holosight_khk_F,acc_pointer_IR,30Rnd_556x45_Stanag,1Rnd_HE_Grenade_shell};
+			weapons[] = {
+        {arifle_TRG21_GL_F,
+          {optic_Holosight_khk_F,acc_pointer_IR,30Rnd_556x45_Stanag,1Rnd_HE_Grenade_shell}
+        },
+        Rangefinder
+      };
 			vestRandom = 0;
 			vest[] = {V_CarrierRigKBT_01_light_Olive_F};
 		};

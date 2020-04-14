@@ -1,4 +1,3 @@
-systemChat "DOING WEAPONS";
 params ["_unit", "_weapons", "_priKit", "_secKit", "_pisKit"];
 private _handled;
 
@@ -30,7 +29,8 @@ if ( local _unit ) then {
               _unit addWeapon _class;
               [_unit, _class, _attachments] call tb3_fnc_setAttachments;
             };
-            //default { false; }; //if you have some how managed to not do any of the above I'm honestly at a loss, go read the docs. please.
+            default { false; }; //if you have some how managed to not do any of the above I'm honestly at a loss, go read the docs. please.
+          };
         } else { _unit addWeapon _x; };
     } forEach _weapons;
 

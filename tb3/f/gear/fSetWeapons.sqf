@@ -16,17 +16,25 @@ if ( local _unit ) then {
         _wepArg params ["_class","_attachments"];
         _unit addWeapon _class;
         {
-          _unit addWeaponItem [_class, _x, 1];
+			if (_x isEqualType []) then {
+				private _attachment = selectRandom _x;
+				_unit addWeaponItem [_class, _attachment, 1];
+			} else {
+          		_unit addWeaponItem [_class, _x, 1];
+			};
         } forEach _attachments;
-
       };
       if ((_wepArg # 0) isEqualType []) then {
         private _wepSel = selectRandom _wepArg;
         _wepSel params ["_class","_attachments"];
-
         _unit addWeapon _class;
         {
-          _unit addWeaponItem [_class, _x, 1];
+			if (_x isEqualType []) then {
+				private _attachment = selectRandom _x;
+				_unit addWeaponItem [_class, _attachment, 1];
+			} else {
+          		_unit addWeaponItem [_class, _x, 1];
+			};
         } forEach _attachments;
       };
     } else {

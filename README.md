@@ -5,7 +5,7 @@ This document details the implementation and usage of the TB3 standalone gear sy
 You will require the following to implement this gear script:
 
 * TB3 gear system example mission files, available on github: https://github.com/toadball/tb3_gear.VR
-* A good script \ text editor such as: Notepad++, or Atom is also recommended.
+* A good script \ text editor such as: Notepad++, Visual Studio Code, or Atom is also recommended.
 
 
 ## Adding the TB3 gear system to your mission.

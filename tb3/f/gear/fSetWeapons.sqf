@@ -8,38 +8,38 @@ if ( local _unit ) then {
 
     // and now add the weapons
     {
-    private _wepArg = _x;
-    private _class;
-    private _attachments;
-    if (_wepArg isEqualType []) then {
-        if ((_wepArg # 0) isEqualType "") then {
-            _wepArg params ["_class","_attachments"];
-            _unit addWeapon _class;
-            {
-                if (_x isEqualType []) then {
-                    private _attachment = selectRandom _x;
-                    _unit addWeaponItem [_class, _attachment, 1];
-                } else {
-                    _unit addWeaponItem [_class, _x, 1];
-                };
-            } forEach _attachments;
-        };
-        if ((_wepArg # 0) isEqualType []) then {
-            private _wepSel = selectRandom _wepArg;
-            _wepSel params ["_class","_attachments"];
-            _unit addWeapon _class;
-            {
-                if (_x isEqualType []) then {
-                    private _attachment = selectRandom _x;
-                    _unit addWeaponItem [_class, _attachment, 1];
-                } else {
-                    _unit addWeaponItem [_class, _x, 1];
-                };
-            } forEach _attachments;
-        };
-    } else {
-        _unit addWeapon _x;
-    };
+      private _wepArg = _x;
+      private _class;
+      private _attachments;
+      if (_wepArg isEqualType []) then { //when presented with an array within _weapons
+        switch (true) do {  //I'm sorry yax
+            case (_wepArg isEqualTypeAll ""): { //presented with an array of strings within _weapons, select weapon at random
+              _class = selectRandom _x;
+              _unit addWeapon _class;
+            };
+            case (_wepArg isEqualTypeArray ["",[]]): { //standard weapon with attachments array - _wepArg consists of a string followed by an array
+              _wepArg params ["_class","_attachments"];
+              _unit addWeapon _class;
+              {
+                if (_x isEqualType []) then { //if presented with an array within _attachments, randomly select an attachment from those listed
+                  private _attachment = selectRandom _x;
+                  _unit addWeaponItem [_class, _attachment, 1];
+                } else { _unit addWeaponItem [_class, _x, 1]; };
+              } forEach _attachments;
+            };
+            case (_wepArg isEqualTypeAll []): { //multiple weapon and attachment arrays - _wepArg is an array of arrays only
+              private _wepSel = selectRandom _wepArg;
+              _wepSel params ["_class","_attachments"];
+              _unit addWeapon _class;
+              {
+                if (_x isEqualType []) then { //if presented with an array within _attachments, randomly select an attachment from those listed
+                  private _attachment = selectRandom _x;
+                  _unit addWeaponItem [_class, _attachment, 1];
+                } else { _unit addWeaponItem [_class, _x, 1]; };
+              } forEach _attachments;
+            };
+            default { false }; //if you have some how managed to not do any of the above I'm honestly at a loss, go read the docs. please.
+        } else { _unit addWeapon _x; };
     } forEach _weapons;
 
 

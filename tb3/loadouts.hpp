@@ -4,7 +4,7 @@
 class TB3_Gear {//Gear definitions stay within this.
     class ExampleSide { //Side_class, 1st string in _this
         class ExampleUnit { //unit_class, 2nd string in _this
-            
+
             ace_earplugs = 1; //Set to 1 to start with earplugs in
 
             //weapons: includes binos, launchers, pistols, and main rifle/lmg weapon
@@ -85,10 +85,10 @@ class TB3_Gear {//Gear definitions stay within this.
             weapons[] = {
             {
                 {"arifle_TRG21_GL_F",
-                    {"optic_Holosight_khk_F","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
+                    {{"optic_Arco", "optic_Hamr","optic_Holosight_khk_F","optic_MRCO"},"acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
                 },
                 {"arifle_TRG21_GL_F",
-                    {"optic_MRCO","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
+                    {"optic_Aco","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
                 },
                 {"arifle_Mk20_GL_plain_F",
                     {"optic_MRCO","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
@@ -105,7 +105,7 @@ class TB3_Gear {//Gear definitions stay within this.
             },
             "Rangefinder"
             };
-            
+
             vest[] = {"V_CarrierRigKBT_01_light_Olive_F"};
         };
 

@@ -35,6 +35,9 @@ class gear {
     class setWeapons {
         file = "tb3\f\gear\fSetWeapons.sqf";
     };
+    class setAttachments {
+        file = "tb3\f\gear\fSetAttachments.sqf";
+    };
     class setMagazines {
         file = "tb3\f\gear\fSetMagazines.sqf";
     };

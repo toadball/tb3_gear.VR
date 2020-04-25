@@ -80,18 +80,21 @@ class TB3_Gear {//Gear definitions stay within this.
             goggles[] = {"G_Tactical_Black","G_Bandanna_tan","G_Tactical_Clear","G_Combat","G_Lowprofile"};
             uniform[] = {"U_B_CTRG_1","U_B_CTRG_2","U_B_CTRG_3"};
             backpack[] = {"B_TacticalPack_oli","B_Kitbag_cbr","B_AssaultPack_cbr","B_FieldPack_khk","B_Carryall_khk"};
-            vest[] = {"V_PlateCarrierL_CTRG","V_Chestrig_oli","V_PlateCarrier1_rgr","V_BandollierB_oli"};
+            vest[] = {"V_PlateCarrierL_CTRG","V_Chestrig_oli","V_PlateCarrier1_rgr","V_CarrierRigKBT_01_light_Olive_F","V_BandollierB_oli"};
 
             weapons[] = {
             {
                 {"arifle_TRG21_GL_F",
                     {{"optic_Arco", "optic_Hamr","optic_Holosight_khk_F","optic_MRCO"},"acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
                 },
-                {"arifle_TRG21_GL_F",
-                    {"optic_Aco","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
+                {"arifle_TRG21_F",
+                    {{"optic_Arco","optic_Hamr","optic_Holosight_khk_F","optic_MRCO"},"acc_pointer_IR","30Rnd_556x45_Stanag"}
                 },
                 {"arifle_Mk20_GL_plain_F",
-                    {"optic_MRCO","acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
+                    {{"optic_Arco","optic_Hamr","optic_Holosight_khk_F","optic_MRCO"},"acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
+                },
+                {"arifle_Mk20_plain_F",
+                    {{"optic_Arco","optic_Hamr","optic_Holosight_khk_F","optic_MRCO"},"acc_pointer_IR","30Rnd_556x45_Stanag","1Rnd_HE_Grenade_shell"}
                 }
             },
             "Rangefinder"

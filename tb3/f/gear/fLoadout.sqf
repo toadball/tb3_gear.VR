@@ -1,8 +1,23 @@
 //core info
 params ["_unit","_cfg","_gear","_respawn"];
 
-//get the defined gear.
-TB3_GearPath = (missionConfigFile >> "TB3_Gear");
+private _missionConfigPath = (missionConfigFile >> "TB3_Gear");
+private _configFilePath = (ConfigFile >> "TB3_Gear");
+private _isMissionConfig = isClass (_missionConfigPath >> _cfg >> _gear);
+private _isConfigFile = isClass (_configFilePath >> _cfg >> _gear);
+if ( !((_isMissionConfig) || (_isConfigFile)) ) exitWith {
+  _handled = false;
+  _handled;
+};
+
+if (isClass (_missionConfigPath >> _cfg >> _gear)) then {
+  TB3_GearPath = _missionConfigPath;
+} else {
+  if (isClass (_configFilePath >> _cfg >> _gear)) then {
+    TB3_GearPath = _configFilePath;
+  };
+};
+
 private _weapons = getArray (TB3_GearPath >> _cfg >> _gear >> "weapons");
 private _magazines = getArray (TB3_GearPath >> _cfg >> _gear >> "magazines");
 
@@ -168,3 +183,4 @@ if (_respawn && ( !(_unit getVariable ["tb3_loadout_respawnEH", false]) )) then 
 
 
 _handled = true;
+_handled;

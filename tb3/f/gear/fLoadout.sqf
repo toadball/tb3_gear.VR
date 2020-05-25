@@ -26,29 +26,19 @@ private _secKit = getArray (TB3_GearPath >> _cfg >> _gear >> "secKit");
 private _pisKit = getArray (TB3_GearPath >> _cfg >> _gear >> "pisKit");
 
 private _backpack = getArray (TB3_GearPath >> _cfg >> _gear >> "backpack");
-//private _backpackRandom = getNumber (TB3_GearPath >> _cfg >> _gear >> "backpackRandom");
 private _backpackContents = getArray (TB3_GearPath >> _cfg >> _gear >> "backpackContents");
 
 private _headgear = getArray (TB3_GearPath >> _cfg >> _gear >> "headgear");
-//private _headgearRandom = getNumber (TB3_GearPath >> _cfg >> _gear >> "headgearRandom");
 
 private _uniform = getArray (TB3_GearPath >> _cfg >> _gear >> "uniform");
-//private _uniformRandom = getNumber (TB3_GearPath >> _cfg >> _gear >> "uniformRandom");
 private _uniformContents = getArray (TB3_GearPath >> _cfg >> _gear >> "uniformContents");
 
 private _vest = getArray (TB3_GearPath >> _cfg >> _gear >> "vest");
-//private _vestRandom = getNumber (TB3_GearPath >> _cfg >> _gear >> "vestRandom");
 private _vestContents = getArray (TB3_GearPath >> _cfg >> _gear >> "vestContents");
 
 private _goggles = getArray (TB3_GearPath >> _cfg >> _gear >> "goggles");
-//private _gogglesRandom = getNumber (TB3_GearPath >> _cfg >> _gear >> "gogglesRandom");
-private _allowPlayerGoggles;
-if (isPlayer _unit) then {
-    _allowPlayerGoggles = getNumber (TB3_GearPath >> _cfg >> _gear >> "allowPlayerGoggles"); // Allow player-selected goggles
-    _goggles = goggles _unit;
-} else {
-    _allowPlayerGoggles = 0;
-};
+private _playerGoggles = goggles _unit;
+private _allowPlayerGoggles = getNumber (TB3_GearPath >> _cfg >> _gear >> "allowPlayerGoggles");
 
 private _items = getArray (TB3_GearPath >> _cfg >> _gear >> "items");
 private _assignedItems = getArray (TB3_GearPath >> _cfg >> _gear >> "assignedItems");
@@ -126,12 +116,20 @@ if ((count _headgear) > 0) then {
 		[_unit,_headgearSel] call tb3_fnc_SetHeadgear;
 	} else {  [_unit,_headgear select 0] call tb3_fnc_SetHeadgear; };
 };
-if (_allowPlayerGoggles <= 0 && {(count _goggles) > 0}) then {
+
+if ((count _goggles) > 0) then {
+  if ( (!(isPlayer _unit)) || (isNil "_allowPlayerGoggles") || (_allowPlayerGoggles <= 0) ) then {
     if ((count _goggles) > 1) then {
         private _gogglesSel = selectRandom _goggles;
         [_unit,_gogglesSel] call tb3_fnc_SetGoggles;
-    } else { [_unit,_goggles select 0] call tb3_fnc_SetGoggles; };
+    } else {
+      [_unit,_goggles # 0] call tb3_fnc_SetGoggles;
+    };
+  } else {
+      [_unit,_playerGoggles] call tb3_fnc_SetGoggles;
+  };
 };
+
 if ((count _magazines) > 0) then {	[_unit,_magazines] call tb3_fnc_SetMagazines; };
 if ((count _weapons) > 0) then { [_unit,_weapons,_priKit,_secKit,_pisKit] call tb3_fnc_SetWeapons; };
 if ((count _items) > 0) then { [_unit,_items] call tb3_fnc_SetItems;	};

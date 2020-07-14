@@ -1,8 +1,8 @@
 params ["_loadout", ["_gear", ""], ["_verbose", false]];
 
 private _log = {
-  params ["_message", ["_verboseOnly", true]];
-  if (!_verboseOnly || _verbose) then {
+  params ["_message", ["_alwaysPrint", false]];
+  if (_alwaysPrint || _verbose) then {
     systemChat format ["[TB3 Gear] %1", _message];
     diag_log format ["[TB3 Gear] %1", _message];
   };
@@ -34,7 +34,7 @@ private _validateGear = {
   };
 
   private _loadoutName = configName _loadoutConfig;
-  [format ["Validating %1 >> %2", _loadout, _loadoutName], false] call _log;
+  [format ["Validating %1 >> %2", _loadout, _loadoutName], true] call _log;
 
   private _invalidLoadouts = [];
   
@@ -95,7 +95,7 @@ private _validateGear = {
 
     if (_uniformContentsWeight > _uniformCapacity) then {
       _invalidLoadouts pushBackUnique _loadoutName;
-      [format ["Uniform %2 failed: Load %3 > capacity %4", _loadoutName, _uniformClass, _uniformContentsWeight, _uniformCapacity], false] call _log;
+      [format ["Uniform %2 failed: Load %3 > capacity %4", _loadoutName, _uniformClass, _uniformContentsWeight, _uniformCapacity], true] call _log;
     } else {
       format ["Uniform %1 ok", _uniformClass, _uniformContentsWeight, _uniformCapacity] call _log;
     };
@@ -108,7 +108,7 @@ private _validateGear = {
 
     if (_vestContentsWeight > _vestCapacity) then {
       _invalidLoadouts pushBackUnique _loadoutName;
-      [format ["Vest %2 failed: Load %3 > capacity %4", _loadoutName, _vestClass, _vestContentsWeight, _vestCapacity], false] call _log;
+      [format ["Vest %2 failed: Load %3 > capacity %4", _loadoutName, _vestClass, _vestContentsWeight, _vestCapacity], true] call _log;
     } else {
       format ["Vest %1 ok", _vestClass, _vestContentsWeight, _vestCapacity] call _log;
     };
@@ -120,14 +120,16 @@ private _validateGear = {
 
     if (_backpackContentsWeight > _backpackCapacity) then {
       _invalidLoadouts pushBackUnique _loadoutName;
-      [format ["Backpack %2 failed: Load %3 > capacity %4", _loadoutName, _backpackClass, _backpackContentsWeight, _backpackCapacity], false] call _log;
+      [format ["Backpack %2 failed: Load %3 > capacity %4", _loadoutName, _backpackClass, _backpackContentsWeight, _backpackCapacity], true] call _log;
     } else {
       format ["Backpack %1 ok", _backpackClass, _backpackContentsWeight, _backpackCapacity] call _log;
     };
   } forEach _backpack;
 
   if (_invalidLoadouts isEqualTo []) then {
-    [format ["Ok"], false] call _log;
+    ["Ok", true] call _log;
+  } else {
+    ["Fail", true] call _log;
   };
   _invalidLoadouts;
 };
@@ -140,18 +142,18 @@ if (_gear != "") then {
     if (!isNil {[_x, "uniform", nil] call BIS_fnc_returnConfigEntry}) then {
       //_x call _validateGear;
       private _res = _x call _validateGear;
-      format ["Res %1", _res] call _log;
       if !(_res isEqualTo []) then {
-        _invalidLoadouts pushBackUnique _res;
+        _invalidLoadouts pushBackUnique _res # 0;
       };
     };
   } forEach ("true" configClasses (_cfgPath >> _loadout));
 };
 
 if (_invalidLoadouts isEqualTo []) then {
-  [format ["All loadouts are valid"], false] call _log;
+  [format ["All loadouts are valid"], true] call _log;
   true;
 } else {
-  [format ["Some loadouts are invalid: %1", _invalidLoadouts], false] call _log;
+  [format ["Some loadouts are invalid: %1", _invalidLoadouts], true] call _log;
+  copyToClipboard str _invalidLoadouts;
   false;
 };

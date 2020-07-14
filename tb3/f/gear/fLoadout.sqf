@@ -1,5 +1,5 @@
 //core info
-params ["_unit","_cfg","_gear","_respawn"];
+params ["_unit","_cfg","_gear",["_respawn",true],["_mode",0]];
 
 private _missionConfigPath = (missionConfigFile >> "TB3_Gear");
 private _configFilePath = (ConfigFile >> "TB3_Gear");
@@ -10,11 +10,18 @@ if ( !((_isMissionConfig) || (_isConfigFile)) ) exitWith {
   _handled;
 };
 
-if (isClass (_missionConfigPath >> _cfg >> _gear)) then {
-  TB3_GearPath = _missionConfigPath;
-} else {
-  if (isClass (_configFilePath >> _cfg >> _gear)) then {
+switch (_mode) do {
+  case 1: { //Force configFile use
     TB3_GearPath = _configFilePath;
+  };
+  case 0: {
+    if (isClass (_missionConfigPath >> _cfg >> _gear)) then {
+      TB3_GearPath = _missionConfigPath;
+    } else {
+      if (isClass (_configFilePath >> _cfg >> _gear)) then {
+        TB3_GearPath = _configFilePath;
+      };
+    };
   };
 };
 
@@ -165,8 +172,6 @@ if ((isClass(configFile >> "CfgPatches" >> "ACRE_Main")) && (isClass(missionConf
 };
 
 _unit setVariable ["tb3_loadout", [_unit,_cfg,_gear], true];
-
-if (isNil "_respawn") then { _respawn = true; };
 
 if (_respawn && ( !(_unit getVariable ["tb3_loadout_respawnEH", false]) )) then {
   _unit setVariable ["tb3_loadout_respawnEH", true, true];

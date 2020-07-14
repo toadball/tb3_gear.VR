@@ -69,5 +69,8 @@ class gear {
     class util_GearToClass {
         file = "tb3\f\gear\fGeartoClass.sqf";
     };
-
+    
+    class util_validateLoadout {
+        file = "tb3\f\gear\fValidateLoadout.sqf";
+    };
 };

@@ -1,3 +1,18 @@
+// tb3_fnc_util_validateLoadout
+//
+// Checks container (uniform, vest, backpack) inventory against container capacity
+// for all possible containers for a loadout.
+//
+// Parameters:
+// 0: Loadout category <string>
+// 1: Loadout name (use "" to validate all loadouts in the category) [Default: ""] <string>
+// 2: Enable verbose logging [Default: false] <bool>
+//
+// Returns true if all loadouts pass validation, otherwise false
+//
+// Author: VKing
+
+
 params ["_loadout", ["_gear", ""], ["_verbose", false]];
 
 private _log = {
@@ -47,7 +62,6 @@ private _validateGear = {
   
   private _getContentsWeight = {
     params ["_contents"];
-    // format ["_getContentsWeight for %1", _contents] call _log;
 
     private _totalWeight = 0;
     { // forEach _contents
@@ -56,7 +70,6 @@ private _validateGear = {
       private _itemConfig  = configNull;
       private _itemType    = "";
       private _itemWeight  = 0;
-      // format ["Checking item %2x %1", _item, _amount] call _log;
 
       // From CBA_fnc_getItemConfig
       {
@@ -67,7 +80,6 @@ private _validateGear = {
             _itemType = _x;
         };
       } forEach ["CfgWeapons", "CfgMagazines", "CfgGlasses"];
-      // format ["Item type %1 %2", _itemType, _itemConfig] call _log;
       
       
       if (_itemConfig != configNull) then {
@@ -77,7 +89,6 @@ private _validateGear = {
           _itemWeight = getNumber (_itemConfig >> "mass");
         };
         _totalWeight = _totalWeight + (_itemWeight * _amount);
-        // format ["Item weight %1*%2=%3 // Total weight %4", _itemWeight, _amount, _itemWeight*_amount, _totalWeight] call _log;
       };
     } forEach _contents;
 
@@ -140,7 +151,6 @@ if (_gear != "") then {
 } else {
   {
     if (!isNil {[_x, "uniform", nil] call BIS_fnc_returnConfigEntry}) then {
-      //_x call _validateGear;
       private _res = _x call _validateGear;
       if !(_res isEqualTo []) then {
         _invalidLoadouts pushBackUnique _res # 0;

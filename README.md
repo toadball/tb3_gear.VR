@@ -181,6 +181,10 @@ backpackContents[] = {
 
 Backpack Contents: This array is an array of arrays containing the classname string of the magazines, items, and weapons to be added to the backpack and the quantity to be added.
 
+`ace_gunbagWeapon[] = {"srifle_DMR_02_F", {"10Rnd_338_Mag", "optic_lrps", "acc_pointer_ir", "muzzle_snds_338_black", "bipod_01_f_blk"}};`
+
+Gunbag Weapon: This array contains a single weapon in the same format as the `weapon[]` array that will be added to the unit if it is carrying an ACE gunbag (`"ace_gunbag"` or `"ace_gunbag_tan"`). Note that this array does not support randomisation.
+
 `ace_earplugs = 1;`
 
 When set to 1 aceEarPlugs will have a unit with this loadout start with earplugs in.
@@ -286,6 +290,7 @@ In this example we are now adding two backpacks of a different type with content
 
 ## Utility Functions:
 
+### GearToClass
 ```sqf
 // Params:
 // _unit: the unit you want to create a loadout based on - object
@@ -294,6 +299,17 @@ In this example we are now adding two backpacks of a different type with content
 ```
 
 This function returns the current gear of a specified unit as a TB3 gear loadout class. It also exports the same return to clipboard for easy copy and paste loadout creation. The exported class can then be adjusted as normal by editing it within your preferred program.
+
+### ValidateLoadout
+```sqf
+// Parameters:
+// 0: Loadout category <string>
+// 1: Loadout name (use "" to validate all loadouts in the category) [Default: ""] <string>
+// 2: Enable verbose logging [Default: false] <bool>
+["ExampleSide"] call tb3_fnc_util_validateLoadout;
+```
+
+This function checks container inventory (uniform, vest, backpack) against container capacity for all possible containers for a loadout. If the inventory items all fit in all containers, the script returns true. Logs errors to RPT.
 
 ## Redundant Variables:
 `priKit[] = {"optic_Arco","acc_pointer_IR"};`

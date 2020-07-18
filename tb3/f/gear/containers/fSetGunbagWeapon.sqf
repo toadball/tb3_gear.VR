@@ -1,5 +1,4 @@
 params ["_unit", "_gunbagWeapon"];
-//diag_log format ["SGBW 1 %1", _gunbagWeapon];
 
 if !(local _unit) exitWith {false};
 if !(backpack _unit in ["ace_gunbag", "ace_gunbag_Tan"]) exitWith {false};
@@ -7,7 +6,7 @@ if !(backpack _unit in ["ace_gunbag", "ace_gunbag_Tan"]) exitWith {false};
 
 private _gunbag = backpackContainer _unit;
 _gunbagWeapon params ["_weapon","_items"];
-//diag_log format ["SGBW 2 %1, %2", _weapon, _items];
+
 private _magazines = [];
 private _attachments = [];
 {
@@ -15,7 +14,6 @@ private _attachments = [];
     if (isClass (configFile >> "CfgMagazines" >> _x)) then { _magazines pushBackUnique _x; };
   };
 } forEach _items;
-//diag_log format ["SGBW 3 %1, %2", _attachments, _magazines];
 
 // add virtual load
 private _mass = [_weapon, _attachments, _magazines] call ace_gunbag_fnc_calculateMass;

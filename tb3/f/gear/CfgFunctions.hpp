@@ -50,6 +50,9 @@ class gear {
     class setUniformContents {
         file = "tb3\f\gear\containers\fSetUniformContents.sqf";
     };
+    class setGunbagWeapon {
+        file = "tb3\f\gear\containers\fSetGunbagWeapon.sqf";
+    };
 
     class setVehCargoMagazines {
         file = "tb3\f\gear\vehicleCargo\fSetVehCargoMagazines.sqf";

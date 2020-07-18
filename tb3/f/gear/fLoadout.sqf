@@ -35,6 +35,8 @@ private _pisKit = getArray (TB3_GearPath >> _cfg >> _gear >> "pisKit");
 private _backpack = getArray (TB3_GearPath >> _cfg >> _gear >> "backpack");
 private _backpackContents = getArray (TB3_GearPath >> _cfg >> _gear >> "backpackContents");
 
+private _gunbagWeapon = getArray (TB3_GearPath >> _cfg >> _gear >> "ace_gunbagWeapon");
+
 private _headgear = getArray (TB3_GearPath >> _cfg >> _gear >> "headgear");
 
 private _uniform = getArray (TB3_GearPath >> _cfg >> _gear >> "uniform");
@@ -149,6 +151,7 @@ if (_aceEOD == 1) then { _unit setVariable ["ACE_isEOD", true, true]; };
 if ((count _backpackContents) > 0) then { [_unit,_backpackContents] call tb3_fnc_setRuckContents; };
 if ((count _uniformContents) > 0) then { [_unit,_uniformContents] call tb3_fnc_setUniformContents; };
 if ((count _vestContents) > 0) then { [_unit,_vestContents] call tb3_fnc_setVestContents; };
+if ((count _gunbagWeapon) > 0) then { [_unit,_gunbagWeapon] call tb3_fnc_setGunbagWeapon; };
 
 if (!(_unit isKindOf "Man")) then {
 

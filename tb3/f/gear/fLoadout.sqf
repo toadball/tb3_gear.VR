@@ -35,7 +35,7 @@ private _pisKit = getArray (TB3_GearPath >> _cfg >> _gear >> "pisKit");
 private _backpack = getArray (TB3_GearPath >> _cfg >> _gear >> "backpack");
 private _backpackContents = getArray (TB3_GearPath >> _cfg >> _gear >> "backpackContents");
 
-private _gunbagWeapon = getArray (TB3_GearPath >> _cfg >> _gear >> "gunbagWeapon");
+private _gunbagWeapon = getArray (TB3_GearPath >> _cfg >> _gear >> "ace_gunbagWeapon");
 
 private _headgear = getArray (TB3_GearPath >> _cfg >> _gear >> "headgear");
 

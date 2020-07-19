@@ -54,11 +54,11 @@ private _validateGear = {
   private _invalidLoadouts = [];
   
   private _uniform          = getArray (_loadoutConfig >> "uniform");
-  private _uniformContents  = getArray (_loadoutConfig >> "uniformContents");
+  private _uniformContents  = getArray (_loadoutConfig >> "uniformContents") + getArray (_loadoutConfig >> "moreUniformContents");
   private _vest             = getArray (_loadoutConfig >> "vest");
-  private _vestContents     = getArray (_loadoutConfig >> "vestContents");
+  private _vestContents     = getArray (_loadoutConfig >> "vestContents") + getArray (_loadoutConfig >> "moreVestContents");
   private _backpack         = getArray (_loadoutConfig >> "backpack");
-  private _backpackContents = getArray (_loadoutConfig >> "backpackContents");
+  private _backpackContents = getArray (_loadoutConfig >> "backpackContents") + getArray (_loadoutConfig >> "moreBackpackContents");
   
   private _getContentsWeight = {
     params ["_contents"];

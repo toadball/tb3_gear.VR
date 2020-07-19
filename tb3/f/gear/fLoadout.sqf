@@ -25,7 +25,7 @@ switch (_mode) do {
   };
 };
 
-private _weapons = getArray (TB3_GearPath >> _cfg >> _gear >> "weapons");
+private _weapons = getArray (TB3_GearPath >> _cfg >> _gear >> "weapons") + getArray (TB3_GearPath >> _cfg >> _gear >> "moreWeapons");
 private _magazines = getArray (TB3_GearPath >> _cfg >> _gear >> "magazines");
 
 private _priKit = getArray (TB3_GearPath >> _cfg >> _gear >> "priKit");
@@ -33,17 +33,17 @@ private _secKit = getArray (TB3_GearPath >> _cfg >> _gear >> "secKit");
 private _pisKit = getArray (TB3_GearPath >> _cfg >> _gear >> "pisKit");
 
 private _backpack = getArray (TB3_GearPath >> _cfg >> _gear >> "backpack");
-private _backpackContents = getArray (TB3_GearPath >> _cfg >> _gear >> "backpackContents");
+private _backpackContents = getArray (TB3_GearPath >> _cfg >> _gear >> "backpackContents") + getArray (TB3_GearPath >> _cfg >> _gear >> "moreBackpackContents");
 
 private _gunbagWeapon = getArray (TB3_GearPath >> _cfg >> _gear >> "ace_gunbagWeapon");
 
 private _headgear = getArray (TB3_GearPath >> _cfg >> _gear >> "headgear");
 
 private _uniform = getArray (TB3_GearPath >> _cfg >> _gear >> "uniform");
-private _uniformContents = getArray (TB3_GearPath >> _cfg >> _gear >> "uniformContents");
+private _uniformContents = getArray (TB3_GearPath >> _cfg >> _gear >> "uniformContents") + getArray (TB3_GearPath >> _cfg >> _gear >> "moreUniformContents");
 
 private _vest = getArray (TB3_GearPath >> _cfg >> _gear >> "vest");
-private _vestContents = getArray (TB3_GearPath >> _cfg >> _gear >> "vestContents");
+private _vestContents = getArray (TB3_GearPath >> _cfg >> _gear >> "vestContents") + getArray (TB3_GearPath >> _cfg >> _gear >> "moreVestContents");
 
 private _goggles = getArray (TB3_GearPath >> _cfg >> _gear >> "goggles");
 private _playerGoggles = goggles _unit;

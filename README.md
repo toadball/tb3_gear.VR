@@ -227,7 +227,7 @@ Once enabled, additional classes should be added to the appropriate loadout vari
 
 These arrays can be added to a loadout inheriting from another loadout, which allows the loadout to add weapons or items without having to duplicate the `weapons[]` and `*contents[]` arrays of the parent.
 
-`moreWeapon[]`, `moreUniformContents[]`, `moreVestContents[]`, and `moreBackpackContents[]` are supported.
+`moreWeapons[]`, `moreUniformContents[]`, `moreVestContents[]`, and `moreBackpackContents[]` are supported.
 
 Example:
 ```cpp

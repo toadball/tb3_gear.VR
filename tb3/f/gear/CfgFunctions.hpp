@@ -76,4 +76,9 @@ class gear {
     class util_validateLoadout {
         file = "tb3\f\gear\fValidateLoadout.sqf";
     };
+
+    class admin_initInteractionMenu {
+        file = "tb3\f\gear\fInitInteractionMenu.sqf";
+        postInit = 1;
+    };
 };

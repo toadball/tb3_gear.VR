@@ -227,6 +227,28 @@ How this can be done is detailed along with how to set these as normal.
 
 Once enabled, additional classes should be added to the appropriate loadout variable. Additionally, this will disable the ability for you to clear the inventories of rucksacks prior to adding them to a unit.
 
+#### More*[] arrays
+
+These arrays can be added to a loadout inheriting from another loadout, which allows the loadout to add weapons or items without having to duplicate the `weapons[]` and `*contents[]` arrays of the parent.
+
+`moreWeapons[]`, `moreUniformContents[]`, `moreVestContents[]`, and `moreBackpackContents[]` are supported.
+
+Example:
+```cpp
+class Rifleman {
+  weapons[] = {LOADS_OF_RANDOM_RIFLES};
+  vestContents[] = {
+    MAGAZINES,
+    GRENADES,
+    BANDAGES
+};
+
+class TeamLeader: Rifleman {
+  moreWeapons[] = {BINOCULARS};
+  moreVestContents[] = {RADIO};
+};
+```
+
 
 ### Vehicle/Object Inventory Specific variables:
 
